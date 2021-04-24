@@ -234,31 +234,3 @@ class ProjectDetailView(DetailView):
     queryset = ProjectMainModel.objects.all()
     context_object_name = "project_detail"
 
-
-
-
-
-
-
-# def project_list(request):
-#     # This returns a queryset
-#     projects = Project.objects.all()
-#     context = {
-#         "projects": projects,
-#     }
-#     return render(request, 'main_app/project_list.html', context)
-
-# def project_detail(request, pk):
-#     project = Project.objects.get(id=pk)
-#     context = {
-#         "project":project,
-#     }
-#     return render(request, 'main_app/project_detail.html', context)
-
-# def project_create(request):
-#     print(request.POST)
-#     form = Project_form()
-#     context = {
-#         "form":form
-#     }
-#     return render(request, 'main_app/project_create.html', context)
