@@ -240,8 +240,6 @@ class ProjectDetailView(DetailView):
 
 
 
-# taijasidoja;sodhasjs
-
 # def project_list(request):
 #     # This returns a queryset
 #     projects = Project.objects.all()
