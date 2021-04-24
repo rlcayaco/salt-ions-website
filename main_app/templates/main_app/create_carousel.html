@@ -1,0 +1,45 @@
+{% extends 'base_create.html' %} {% load static %} {% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="create_main_wrapper">
+    <div class="create_secondary_wrapper">
+        <div class="container">
+
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bread bread-font">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'main_app:create_page' %}">Create Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Create Carousel Image</li>
+                    </ol>
+                </nav>
+
+                <div class="create_secondary_wrapper">
+                    <h2 class="create_title">Create new Carousel Image</h2>
+
+                    <form method="POST" enctype="multipart/form-data" class="row create_form">
+                        {% csrf_token %}
+
+                        <div class="col-md-12">
+                            {{ form.carousel_name|as_crispy_field }}
+                        </div>
+                        <div class="col-md-12">
+                            {{ form.carousel_image|as_crispy_field }}
+                        </div>
+
+                        <!-- Button -->
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary contact-us-submit-button">
+                                Submit
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>     
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

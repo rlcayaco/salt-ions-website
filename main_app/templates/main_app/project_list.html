@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="card bg-dark child-banner-wrapper">
+    <div class="child-banner-black-wrapper">
+        <img class="child-banner-image card-img" src="{% static 'images/website-images/vanishing-edge/edge-10.jpg' %}"
+            alt="front-image" />
+    </div>
+    <div class="card-img-overlay child-banner-font-wrapper">
+        <div class="container child-banner-font-wrapper-container">
+            <h1 class="card-text child-banner-title-font">Our Projects</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container child-body-wrapper">
+    <!-- ====== Bread Crumb ===== -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bread bread-font">
+            <li class="breadcrumb-item">
+                <a href="{% url 'landing_page' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Project List</li>
+        </ol>
+    </nav>
+
+    <div class="project-title-wrapper">
+        <h1 class="project-title-font">All Projects</h1>
+        <p class="project-body-font">
+            /
+            {% for project in project_list %}
+                {{ project.project_main_name }} / 
+            {% endfor %}
+        </p>
+    </div>
+
+    <div class="row row-cols-2 row-cols-md-3">
+        {% for projects in project_list %}
+        <div class="col project-image-wrapper">
+            <a href="{% url 'projects:project_detail' projects.pk %}">
+                <div class="card project-image-child-wrapper">
+                    <div class="card project-image-second-child-wrapper img-hover-zoom">
+                        <div class="img-wrapper">
+                            <img src="{{ projects.project_main_image.url }}" class="card-img project-image"
+                                alt="sample-image" />
+                            <p class="appearing-text">
+                                more<br>{{ projects.project_main_name }}
+                            </p>
+                        </div>
+                        <div class="card-img-overlay project-image-name-wrapper">
+                            <p class="card-text project-image-name-font">
+                                {{ projects.project_main_name }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'footer.html' %} {% endblock content %}

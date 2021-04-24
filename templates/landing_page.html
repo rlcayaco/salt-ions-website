@@ -1,0 +1,134 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- code place here-->
+
+<!-- Carousel -->
+<div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false">
+  <div class="card-img-overlay main-banner-overlay-wrapper">
+    <div class="container-fluid carousel-floating-text">
+      <p class="card-text main-banner-title-font">
+        Salt and Ions - Water Treatment System
+      </p>
+      <p class="card-text main-banner-title-font-2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ullam
+      rerum consequatur
+      </p>
+
+      <div class="main-banner-button-wrapper">
+        <a class="btn btn-primary main-banner-button-link" href="{% url 'contact_us' %}" role="button">Contact Us
+          Now!</a>
+      </div>
+    </div>
+  </div>
+  <div class="carousel-inner">
+    {% for carousel_image in carousel %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <img src="{{ carousel_image.carousel_image.url }}" class="d-block w-100 carousel-image" alt="{{ carousel_image.carousel_name.url }}">
+      </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <div class="carousel-icon-wrapper">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </div>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <div class="carousel-icon-wrapper">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </div>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Landing page level 2 -->
+<div class="container">
+  <div class="pt-4 pb-4">
+    <h2 class="metropolis-title-font">Sample text</h2>
+    <p class="second-main-banner-body-font">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ullam
+      rerum consequatur, labore earum voluptate quos illo totam harum at
+      voluptatum sapiente, dolorum alias. Neque voluptatibus reiciendis
+      laudantium ducimus aspernatur!
+    </p>
+  </div>
+</div>
+
+<!-- Landing page level 3 -->
+<div class="center-div-color">
+  <div class="container">
+    <div class="row row-cols-2">
+
+      {% for front_image in front_obj %}
+      <div class="col landing-page-image-div">
+        <a href="{% url 'projects:project_detail' pk=front_image.front_main.pk %}">
+          <div class="card landing-page-cards-div img-hover-zoom">
+            <div class="img-wrapper">
+              <img src="{{ front_image.front_image.url }}"
+                class="card-img-top landing-page-cards-image" alt="landing-card-image" />
+              <h4 class="appearing-text">More {{ front_image.front_name }}</h4>
+            </div>
+            <div class="card-img-overlay landing-page-img-div-overlay">
+              <p class="card-text landing-page-cards-font">{{ front_image.front_name }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+      
+  </div>
+</div>
+
+
+<div class="more-projects-wrapper container">
+  <p class="more-projects-text">Want to see more projects? click</p>
+  <a class="more-projects-button" href="{% url 'main_app:project_list' %}">More Projects <i class="far fa-arrow-alt-circle-right"></i> </a>
+</div>
+
+
+<!-- Video area -->
+<div class="video-wrapper-main">
+  <div class="container video-wrapper-container">
+    <div class="card text-white video-wrapper">
+      <video class="video-num-01 card-img" src="{% static 'video/video_new_1.mp4' %}" muted loop autoplay></video>
+      <div class="card-img-overlay video-card-img-overlay">
+        <h1 class="card-title video-title-font">Insert Title Here:</h1>
+        <p class="card-text video-text-font">
+          This is a wider card with supporting text below<br> 
+          as a natural lead-in to additional content.<br>
+          This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Other Achievements -->
+<!-- <div class="pt-4 pb-4 other-achievements-wrapper">
+  <div class="container">
+    <h2 class="metropolis-title-font">Other Achievements</h2>
+
+    <div class="row row-cols-2 row-cols-md-4">
+      <div class="col landing-page-image-div-2 img-hover-zoom">
+        <div class="img-wrapper">
+          <img src="{% static 'images/website-images/city-sports-club/csc-1.jpg' %}" class="img-fluid"
+            alt="img-sample" />
+        </div>
+      </div>
+
+      <div class="col landing-page-image-div-2">
+        <img src="{% static 'images/website-images/skimmer-type pools/skimmer-4.jpg' %}" class="img-fluid"
+          alt="img-sample" />
+      </div>
+      <div class="col landing-page-image-div-2">
+        <img src="{% static 'images/website-images/waterfalls/waterfall-1.jpg' %}" class="img-fluid" alt="img-sample" />
+      </div>
+      <div class="col landing-page-image-div-2">
+        <img src="{% static 'images/website-images/lagoon-type-pool\Lito Garcia Pool A-2.jpg' %}" class="img-fluid"
+          alt="img-sample" />
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- FOOTER -->
+{% include 'footer.html' %} {% endblock content %}

@@ -1,0 +1,84 @@
+{% extends 'base_create.html' %} {% load static %} {% block content %}
+
+<div class="create_main_wrapper">
+
+  <div class="create_secondary_wrapper">
+    <div class="container">
+      <div class="create_title_wrapper">
+        <h2 class="create_title">Project Main List:</h2>
+        <div class="create_button_wrapper">
+          <a href="{% url 'main_app:create_main' %}">Create new Project Main</a>
+          <span class="create_separator">or</span>
+          <a href="{% url 'main_app:create_child' %}">Project Child</a>
+        </div>
+      </div>
+      
+      <ul class="list-group">
+        {% for project_main_item in project_main %}
+        <li class="list-group-item d-flex justify-content-between align-items-center create_list">
+          
+          {{ project_main_item.project_main_name }}
+          <div class="create_items_right_wrapper">
+            <a class="create_items_right_separator" href="{% url 'main_app:update_main' project_main_item.pk %}">Update</a>
+            <a class="create_items_right_separator" href="{% url 'main_app:delete_main' project_main_item.pk %}">Delete</a>
+            <a class="create_items_right_separator" href="{% url 'main_app:create_main_detail' project_main_item.pk %}"><span class="badge bg-primary rounded-pill">{{ project_main_item.children.count }}</span></a>
+          </div>
+          
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="create_secondary_wrapper">
+    <div class="container">
+      <div class="create_title_wrapper">
+        <h2 class="create_title">Carousel Image List:</h2>
+        <div class="create_button_wrapper">
+          <a href="{% url 'main_app:create_carousel' %}">Create new Carousel Image</a>
+        </div>
+      </div>
+      
+      <ul class="list-group">
+        {% for carousel_item in carousel_items %}
+        <li class="list-group-item d-flex justify-content-between align-items-center create_list">
+          {{ carousel_item.carousel_name }}
+          <div class="create_items_right_wrapper">
+            <a class="create_items_right_separator" href="{% url 'main_app:update_carousel' carousel_item.pk %}">Update</a>
+            <a class="create_items_right_separator" href="{% url 'main_app:delete_carousel' carousel_item.pk %}">Delete</a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="create_secondary_wrapper">
+    <div class="container">
+      <div class="create_title_wrapper">
+        <h2 class="create_title">Front Image List:</h2>
+        <div class="create_button_wrapper">
+          <a href="{% url 'main_app:create_front' %}">Create new Front Image</a>
+        </div>
+      </div>
+      
+      <ul class="list-group">
+        {% for front_item in front_items %}
+        <li class="list-group-item d-flex justify-content-between align-items-center create_list">
+          {{ front_item.front_name }}
+          <div class="create_items_right_wrapper">
+            <a class="create_items_right_separator" href="{% url 'main_app:update_front' front_item.pk %}">Update</a>
+            <a class="create_items_right_separator" href="{% url 'main_app:delete_front' front_item.pk %}">Delete</a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+{% endblock content %}

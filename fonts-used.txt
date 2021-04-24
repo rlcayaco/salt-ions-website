@@ -1,0 +1,26 @@
+font-family: 'Raleway', sans-serif;
+15px
+font-family: 'Open Sans', sans-serif;
+15px
+
+
+  font-family: 'metropolis';
+    font-size: 15px;
+    color: #333;
+    line-height: 1.9;
+
+
+background-color: rgba(57, 49, 49, 0.7);
+
+.container {
+  ...
+  display: flex;
+  justify-content: center; /// left and right
+  align-items: center; /// top and bottom
+}
+
+
+{% static 'images/website-images/vanishing-edge/edge-10.jpg' %}
+static\images\website-images\vanishing-edge\edge-10.jpg
+
+static\images\website-images\collage\image01.png

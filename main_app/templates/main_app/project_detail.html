@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="card bg-dark child-banner-wrapper">
+  <div class="child-banner-black-wrapper">
+    <img class="child-banner-image card-img" src="{% static 'images/website-images/vanishing-edge/edge-10.jpg' %}"
+      alt="front-image" />
+  </div>
+  <div class="card-img-overlay child-banner-font-wrapper">
+    <div class="container child-banner-font-wrapper-container">
+      <h1 class="card-text child-banner-title-font">
+        {{ project_detail.project_main_name }}
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="container child-body-wrapper">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bread bread-font">
+      <li class="breadcrumb-item">
+        <a href="{% url 'landing_page' %}">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="{% url 'projects:project_list' %}">Project List</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        {{ project_detail.project_main_name }}
+      </li>
+    </ol>
+  </nav>
+
+  <!-- ====== This area is from Project List ====== -->
+  <div class="project-title-wrapper">
+    <p class="project-body-font">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+      accusantium magnam eaque adipisci officiis est eligendi distinctio
+      repellendus error nostrum suscipit expedita officia, soluta recusandae
+      deserunt eos commodi explicabo aliquam.
+    </p>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2">
+    {% for child_image in project_detail.children.all %}
+    <div class="col detail-col-wrapper">
+      <div class="card detail-card-wrapper">
+        <img src="{{ child_image.project_child_image.url }}" class="card-img-top detail-card-image"
+          alt="{{ child_image.project_child_name }}" />
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% include 'footer.html' %} {% endblock content %}

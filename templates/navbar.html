@@ -1,0 +1,40 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'landing_page' %}">
+      <img class="brand-image" src="{% static 'images/si-logo-new.png' %}" alt="salt-ion-logo" width="40" height="40" />
+      Salt & Ions
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="toggleFunction(this)">
+      <span class="navbar-toggler-icon">
+
+        <div class="toggler bar1"></div>
+        <div class="toggler bar2"></div>
+        <div class="toggler bar3"></div>
+        
+        {% comment %} <i class="fas fa-bars navbar-toggler-main-icon"></i> {% endcomment %}
+      </span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link navbar-text-font" href="{% url 'company_profile' %}">Company Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navbar-text-font" href="{% url 'main_app:project_list' %}">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navbar-text-font" href="{% url 'main_app:project_list' %}">Services/Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navbar-text-font" href="{% url 'contact_us' %}">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navbar-text-font navbar-login-button" href="{% url 'login' %}">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

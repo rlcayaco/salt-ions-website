@@ -1,0 +1,17 @@
+{% extends 'base_create.html' %} {% load static %} {% block content %}
+
+<div class="login-wrapper">
+    <div class="container">
+        <div class="login-wrapper-font">
+            <h2 class="login-font">You have successfully Logged out.</h2>
+        </div>
+        
+        <!-- Button -->
+        <div class="col-12">
+            <a class="btn btn-primary contact-us-submit-button" href="{% url 'login' %}" role="button">Click to Login again.</a>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock content %}

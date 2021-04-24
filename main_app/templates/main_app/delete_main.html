@@ -1,0 +1,40 @@
+{% extends 'base_create.html' %} {% load static %} {% block content %}  
+
+<div class="create_main_wrapper">
+    <div class="create_secondary_wrapper">
+        <div class="container">
+
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bread bread-font">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'main_app:create_page' %}">Create Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Delete {{ project_main.project_main_name }}</li>
+                    </ol>
+                </nav>
+
+                <div class="create_secondary_wrapper">
+                    <h2 class="create_title">Are you sure you want to delete {{ project_main.project_main_name }} ?</h2>
+                    <p class="create_list">Warning: Deleting this will also delete all child images associated with it.</p>
+
+                    <form method="POST" enctype="multipart/form-data" class="row create_form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <!-- Button -->
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary contact-us-submit-button">
+                                Delete
+                            </button>
+                        </div>
+
+                    </form>
+
+
+
+                </div>     
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
