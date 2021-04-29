@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="card bg-dark child-banner-wrapper">
+    <div class="child-banner-black-wrapper">
+        <img class="child-banner-image card-img" src="{% static 'images/website-images/vanishing-edge/edge-10.jpg' %}"
+            alt="front-image" />
+    </div>
+    <div class="card-img-overlay child-banner-font-wrapper">
+        <div class="container child-banner-font-wrapper-container">
+            <h1 class="card-text child-banner-title-font">Our Products</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container child-body-wrapper">
+    <!-- ====== Bread Crumb ===== -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bread bread-font">
+            <li class="breadcrumb-item">
+                <a href="{% url 'landing_page' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Product List</li>
+        </ol>
+    </nav>
+
+    <div class="project-title-wrapper">
+        <h1 class="project-title-font">All Products</h1>
+        <p class="project-body-font">
+            /
+            {% for product in product_list %}
+                {{ product.product_name }} / 
+            {% endfor %}
+        </p>
+    </div>
+
+    <div class="row row-cols-3">
+        {% for product in product_list %}
+        <div class="col-6 col-md-4 border p-1">
+          <div class="card products-card-wrapper">
+
+            <img src="{{ product.project_image.url }}" class="card-img-top product-image" alt="{{ product.product_name }}">
+
+            <div class="card-body product-card-body-second">
+              <p class="card-text product-title">{{ product.product_name }}</p>
+              <p class="card-text product-text">{{ product.product_description }}</p>
+            </div>
+
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% include 'footer.html' %} {% endblock content %}

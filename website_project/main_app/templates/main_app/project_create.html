@@ -76,6 +76,29 @@
     </div>
   </div>
 
+  <div class="create_secondary_wrapper">
+    <div class="container">
+      <div class="create_title_wrapper">
+        <h2 class="create_title">Product List:</h2>
+        <div class="create_button_wrapper">
+          <a href="{% url 'main_app:create_product' %}">Create new Product</a>
+        </div>
+      </div>
+      
+      <ul class="list-group">
+        {% for product_item in product_items %}
+        <li class="list-group-item d-flex justify-content-between align-items-center create_list">
+          {{ product_item.product_name }}
+          <div class="create_items_right_wrapper">
+            <a class="create_items_right_separator" href="{% url 'main_app:update_product' product_item.pk %}">Update</a>
+            <a class="create_items_right_separator" href="{% url 'main_app:delete_product' product_item.pk %}">Delete</a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
 
 
 </div>

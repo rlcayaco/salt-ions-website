@@ -56,10 +56,10 @@
 <!-- Landing page level 3 -->
 <div class="center-div-color">
   <div class="container">
+    <h2 class="metropolis-center-title">Some of our Projects</h2>
     <div class="row row-cols-2">
-
       {% for front_image in front_obj %}
-      <div class="col landing-page-image-div">
+      <div class="col border p-1">
         <a href="{% url 'projects:project_detail' pk=front_image.front_main.pk %}">
           <div class="card landing-page-cards-div img-hover-zoom">
             <div class="img-wrapper">
@@ -75,20 +75,71 @@
       </div>
       {% endfor %}
       
+    </div>
   </div>
 </div>
 
-
+<!-- More Projects -->
 <div class="more-projects-wrapper container">
   <p class="more-projects-text">Want to see more projects? click</p>
   <a class="more-projects-button" href="{% url 'main_app:project_list' %}">More Projects <i class="far fa-arrow-alt-circle-right"></i> </a>
 </div>
 
+<!-- Products -->
+<div class="products-wrapper">
+  <div class="container">
+    <h2 class="metropolis-center-title">Our Products</h2>
+
+    <div class="row row-cols-3">
+      {% for product in product_items %}
+      <div class="col-6 col-md-4 border p-1">
+        <div class="card products-card-wrapper">
+          <img src="{{ product.project_image.url }}" class="card-img-top product-image" alt="{{ product.product_name }}">
+          <div class="card-body product-card-body">
+            <p class="card-text product-title">{{ product.product_name }}</p>
+            <p class="card-text product-text">{{ product.product_description }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+    
+  </div>
+</div>
+
+<!-- More Projects -->
+<div class="more-projects-wrapper container">
+  <p class="more-projects-text">Want to see more products? click</p>
+  <a class="more-projects-button" href="{% url 'products' %}">More Products <i class="far fa-arrow-alt-circle-right"></i> </a>
+</div>
 
 <!-- Video area -->
 <div class="video-wrapper-main">
   <div class="container video-wrapper-container">
-    <div class="card text-white video-wrapper">
+    <h2 class="metropolis-center-title">Sample Video</h2>
+    
+    <div class="container px-1">
+      <div class="row gx-1">
+        <div class="col-12 col-lg-4">
+         <div class="p-3 border">
+           <p class="video-title-font">Video Title</p>
+           <p class="video-text-font">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, veritatis et quia cumque nisi vitae ipsa assumenda, alias animi repudiandae iure? Laborum corrupti accusamus, accusantium eligendi consequuntur cupiditate aspernatur quidem.</p>
+         </div>
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="p-1 border">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/RCn0R8WjV0A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="ratio ratio-16x9">
+      <iframe src="https://www.youtube.com/embed/RCn0R8WjV0A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div> -->
+    <!-- <div class="card text-white video-wrapper">
       <video class="video-num-01 card-img" src="{% static 'video/video_new_1.mp4' %}" muted loop autoplay></video>
       <div class="card-img-overlay video-card-img-overlay">
         <h1 class="card-title video-title-font">Insert Title Here:</h1>
@@ -97,7 +148,7 @@
           as a natural lead-in to additional content.<br>
           This content is a little bit longer.</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 

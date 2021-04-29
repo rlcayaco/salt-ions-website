@@ -41,7 +41,7 @@
 
   <div class="row row-cols-1 row-cols-md-2">
     {% for child_image in project_detail.children.all %}
-    <div class="col detail-col-wrapper">
+    <div class="col border p-1">
       <div class="card detail-card-wrapper">
         <img src="{{ child_image.project_child_image.url }}" class="card-img-top detail-card-image"
           alt="{{ child_image.project_child_name }}" />

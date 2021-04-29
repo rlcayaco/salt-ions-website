@@ -1,8 +1,9 @@
 from django.shortcuts import render, reverse
 from django.core.mail import send_mail
 from django.http import HttpResponse
-from .models import User, ProjectMainModel, ProjectChildModel, Uploader, CarouselModel, FrontModel
-from .forms import ProjectMainForm, ProjectChildForm, ProjectFrontForm, ProjectCarouselForm, CustomUserCreationForm
+from .models import User, ProjectMainModel, ProjectChildModel, Uploader, CarouselModel, FrontModel, ProductModel
+from .forms import ( ProjectMainForm, ProjectChildForm, ProjectFrontForm, 
+                        ProjectCarouselForm, ProductForm )
 
 # For function based views
 from django.contrib.auth.decorators import login_required
@@ -17,12 +18,11 @@ from django.views.generic import (TemplateView, ListView, DetailView,
 # Django actually has a default UserCreateForm in
 # from django.contrib.auth.forms import UserCreationForm
 # but we choose to create our own here
-class SignupView(CreateView):
-    template_name = "registration/signup.html"
-    form_class = CustomUserCreationForm
-    
-    def get_success_url(self):
-        return reverse("login")
+# class SignupView(CreateView):
+#     template_name = "registration/signup.html"
+#     form_class = CustomUserCreationForm
+#     def get_success_url(self):
+#         return reverse("login")
 
 class LandingPageView(ListView):
     template_name = "landing_page.html"
@@ -35,21 +35,28 @@ class CompanyProfileView(TemplateView):
 class ContactUsView(TemplateView):
     template_name = "contact_us.html"
 
+class ProductView(ListView):
+    template_name = "products.html"
+    queryset = ProductModel.objects.all()
+    context_object_name = "product_list"
+
 
 @login_required
 def create_page(request):
     project_main = ProjectMainModel.objects.all()
     carousel_items = CarouselModel.objects.all()
     front_items = FrontModel.objects.all()
+    product_items = ProductModel.objects.all()
 
     context = {
         "project_main":project_main,
         "carousel_items":carousel_items,
         "front_items":front_items,
+        "product_items":product_items,
     }
     return render(request, "main_app/project_create.html", context)
 
-# ====== Create | Main, Child, Front, Carousel ======
+# ====== Create | Main, Child, Front, Carousel, Product ======
 class CreateMainView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     redirect_field_name = 'main_app/project_create.html'
@@ -86,6 +93,16 @@ class CreateCarouselView(LoginRequiredMixin, CreateView):
 
     template_name = "main_app/create_carousel.html"
     form_class = ProjectCarouselForm
+    
+    def get_success_url(self):
+        return reverse("main_app:create_page")
+
+class CreateProductView(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
+    redirect_field_name = 'main_app/project_create.html'
+
+    template_name = "main_app/create_product.html"
+    form_class = ProductForm
     
     def get_success_url(self):
         return reverse("main_app:create_page")
@@ -186,16 +203,41 @@ class DeleteFrontView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse("main_app:create_page")
 
+# ====== Update/Delete Product ======
+class UpdateProductView(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
+    redirect_field_name = 'main_app/project_create.html'
+
+    template_name = "main_app/update_product.html"
+    queryset = ProductModel.objects.all()
+    form_class = ProductForm
+    context_object_name = "product"
+    
+    def get_success_url(self):
+        return reverse("main_app:create_page")
+
+class DeleteProductView(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
+    redirect_field_name = 'main_app/project_create.html'
+
+    template_name = "main_app/delete_product.html"
+    queryset = ProductModel.objects.all()
+    context_object_name = "product"
+    
+    def get_success_url(self):
+        return reverse("main_app:create_page")
 
 
 
 def landing_page(request):
     carousel = CarouselModel.objects.all()
     front_obj = FrontModel.objects.all()
+    product_items = ProductModel.objects.all()[:3]
 
     context = {
         "carousel":carousel,
         "front_obj":front_obj,
+        "product_items":product_items,
     }
     return render(request, "landing_page.html", context)
 

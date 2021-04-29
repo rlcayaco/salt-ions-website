@@ -21,22 +21,23 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 
 from django.urls import path, include 
-from main_app.views import LandingPageView, CompanyProfileView, contact, landing_page, SignupView
+from main_app.views import LandingPageView, CompanyProfileView, contact, landing_page, ProductView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', landing_page, name='landing_page'),
-    path('signup/', SignupView.as_view(), name='signup'),
+    # path('signup/', SignupView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
     # we used template_name inside LogoutView.as_view so Django will not point out to its default 'registration/logout.html'
     path('logout/', LogoutView.as_view(template_name = 'registration/logout.html'), name='logout'),
     path('company_profile/', CompanyProfileView.as_view(), name='company_profile'),
+    path('products/', ProductView.as_view(), name='products'),
     path('contact_us/', contact, name='contact_us'),
     path('project_list/', include('main_app.urls', namespace='projects')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# if settings.DEBUG:
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,7 +1,7 @@
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
-  if (document.body.scrollTop > 160 || document.documentElement.scrollTop > 160) {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     // Navbar wrapper
     document.getElementsByClassName("navbar")[0].classList.add("navbar-event");
 
@@ -44,6 +44,8 @@ function scrollFunction() {
     
 
   }
+
+
 }
 
 function toggleFunction(x) {

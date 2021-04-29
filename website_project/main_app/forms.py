@@ -1,16 +1,16 @@
 from django import forms 
-from .models import ProjectMainModel, ProjectChildModel, FrontModel, CarouselModel
-from django.contrib.auth.forms import UserCreationForm, UsernameField
+from .models import ProjectMainModel, ProjectChildModel, FrontModel, CarouselModel, ProductModel
+from django.contrib.auth.forms import UsernameField
 from django.contrib.auth import get_user_model
 
 # get_user_model() Returns the User model that is active in this project.
-User = get_user_model()
+# User = get_user_model()
 
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ("username",)
-        field_classes = {'username': UsernameField}
+# class CustomUserCreationForm(UserCreationForm):
+#     class Meta:
+#         model = User
+#         fields = ("username",)
+#         field_classes = {'username': UsernameField}
 
 
 class ProjectMainForm(forms.ModelForm):
@@ -57,4 +57,17 @@ class ProjectCarouselForm(forms.ModelForm):
         ]
         widgets = {
             'carousel_name':forms.TextInput(attrs={'placeholder':'Carousel Name'})
+        }  
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = ProductModel
+        fields = [
+            'product_name',
+            'project_image',
+            'product_description',
+        ]
+        widgets = {
+            'product_name':forms.TextInput(attrs={'placeholder':'Product Name'}),
+            'product_description':forms.TextInput(attrs={'placeholder':'Description'}),
         }  

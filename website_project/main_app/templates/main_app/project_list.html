@@ -35,7 +35,7 @@
 
     <div class="row row-cols-2 row-cols-md-3">
         {% for projects in project_list %}
-        <div class="col project-image-wrapper">
+        <div class="col border p-1">
             <a href="{% url 'projects:project_detail' projects.pk %}">
                 <div class="card project-image-child-wrapper">
                     <div class="card project-image-second-child-wrapper img-hover-zoom">
@@ -57,6 +57,7 @@
         </div>
         {% endfor %}
     </div>
+    
 </div>
 
 {% include 'footer.html' %} {% endblock content %}

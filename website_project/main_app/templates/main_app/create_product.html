@@ -1,6 +1,6 @@
-{% extends 'base_create.html' %} {% load static %} {% block content %}
+{% extends 'base_create.html' %} {% load static %} {% block content %} 
 
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags %}  
 
 <div class="create_main_wrapper">
     <div class="create_secondary_wrapper">
@@ -11,35 +11,43 @@
                         <li class="breadcrumb-item">
                             <a href="{% url 'main_app:create_page' %}">Create Home</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Update {{ carousel.carousel_name }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">Create Product</li>
                     </ol>
                 </nav>
 
                 <div class="create_secondary_wrapper">
-                    <h2 class="create_title">Update {{ carousel.carousel_name }}</h2>
+                    <h2 class="create_title">Create new Product</h2>
                     <p class="create_list">
-                        Important! Read This before updating: This website uses images with the size of 900px-width 
+                        Important! Read This before creating: This website uses images with the size of 900px-width 
                         by 600px-height or an image with the aspect ratio of 3:2. Make sure to use the same image aspect ratio 
                         so that all images shown in the website will have the same sizes.
                     </p>
+
                     <form method="POST" enctype="multipart/form-data" class="row create_form">
                         {% csrf_token %}
-
+                        
                         <div class="col-md-12">
-                            {{ form.carousel_name|as_crispy_field }}
+                            {{ form.product_name|as_crispy_field }}
                         </div>
                         <div class="col-md-12">
-                            {{ form.carousel_image|as_crispy_field }}
+                            {{ form.product_description|as_crispy_field }}
                         </div>
-
+                        <div class="col-md-12">
+                            {{ form.project_image|as_crispy_field }}
+                        </div>
+                        
+                        
+                        
                         <!-- Button -->
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary contact-us-submit-button">
-                                Update
+                                Submit
                             </button>
                         </div>
 
                     </form>
+
+
 
                 </div>     
         </div>
